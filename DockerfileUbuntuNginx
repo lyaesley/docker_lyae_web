@@ -4,9 +4,10 @@ FROM ubuntu:18.04
 # Nginx 설치
 RUN apt-get -y update && apt-get -y upgrade
 RUN apt-get -y install nginx
+RUN useradd --no-create-home nginx
 
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
-WORKDIR /usr/local/tomcat/bin
+# WORKDIR /usr/local/tomcat/bin
 
 # 포트 지정
 EXPOSE 80
