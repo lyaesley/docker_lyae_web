@@ -1,0 +1,44 @@
+version: '3.7'
+services:
+  #ubuntu nginx  config
+  nginx:
+    build:
+      context: . 
+      dockerfile: Dockerfile-UbuntuNginx
+    ports:
+      - "8888:80"
+    expose:
+      - "80"
+    depends_on:
+      - jenkins     
+      - portainer
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - web
+     
+  jenkins:
+    build:
+      context: .
+      dockerfile: Dockerfile-jenkins
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    volumes:
+      - /home/lyae/dev/docker_lyae_web/jenkins_home:/var/jenkins_home
+    networks:
+      - web
+    
+  portainer:
+    image : portainer/portainer:latest
+    ports:
+      - "9000:9000"
+    expose:
+      - "9000"
+    networks:
+      - web
+        
+networks:
+  web:
+    
