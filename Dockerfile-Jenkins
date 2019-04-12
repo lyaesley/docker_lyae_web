@@ -9,11 +9,11 @@ FROM jenkins/jenkins:latest
 
 LABEL maintainer "lyae <lyaesley@naver.com>"
 LABEL title="lyae/jenkins"
-LABEL version="1.0"
+LABEL version="2.0"
 LABEL description="ADD admin account & plugins"
 
 #이미지에 환경 설정 추가 #메인OS 경로는 Dockerfile 하위를 지정해야함 
-ADD jenkins_home /var/jenkins_home
+#ADD jenkins_home /var/jenkins_home
 
 # 포트 지정
 EXPOSE 8080

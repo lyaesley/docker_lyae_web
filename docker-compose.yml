@@ -2,9 +2,12 @@ version: '3.7'
 services:
   #ubuntu nginx  config
   nginx:
+    container_name: lyae-nginx
     build:
       context: . 
       dockerfile: Dockerfile-UbuntuNginx
+    image:
+      lyae/nginx:2.0
     ports:
       - "8888:80"
     expose:
@@ -18,9 +21,12 @@ services:
       - web
      
   jenkins:
+    container_name: lyae-jenkins
     build:
       context: .
-      dockerfile: Dockerfile-jenkins
+      dockerfile: Dockerfile-Jenkins
+    image:
+        lyae/jenkins:2.0
     ports:
       - "8080:8080"
     expose:
@@ -31,11 +37,14 @@ services:
       - web
     
   portainer:
+    container_name: lyae-portainer
     image : portainer/portainer:latest
     ports:
       - "9000:9000"
     expose:
       - "9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - web
         
