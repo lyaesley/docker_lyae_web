@@ -5,7 +5,7 @@ services:
     container_name: lyae-nginx
     build:
       context: . 
-      dockerfile: Dockerfile-UbuntuNginx
+      dockerfile: Dockerfile-ubuntu-nginx
     image:
       lyae/nginx:2.0
     ports:
@@ -24,15 +24,17 @@ services:
     container_name: lyae-jenkins
     build:
       context: .
-      dockerfile: Dockerfile-Jenkins
+      dockerfile: Dockerfile-jenkins-blueocean
+    user: root
     image:
-        lyae/jenkins:2.0
+        lyae/jenkins-blueocean:1.0
     ports:
       - "8080:8080"
     expose:
       - "8080"
     volumes:
       - /home/lyae/dev/docker_lyae_web/jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - web
     
