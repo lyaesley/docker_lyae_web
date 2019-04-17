@@ -1,0 +1,104 @@
+----------------------------리눅스---------------------------------------
+
+
+---------------------------리죽스 시작시 자동 실행 서비스 등록 -----------------
+1. "/etc/systemd/system"에 각각의 컨테이너이름을 넣은 아래의 형식으로 service파일들을 생성
+
+[Unit]
+
+Wants=docker.service
+
+After=docker.service
+
+ 
+
+[Service]
+
+RemainAfterExit=yes
+
+ExecStart=/usr/bin/docker start [컨테이너 이름]
+ExecStop=/usr/bin/docker stop [컨테이너 이름]
+
+ 
+
+[Install]
+
+WantedBy=multi-user.target
+
+2.“systemctl enable 서비스명” 명령어로 데몬에 등록을 시켜줍니다.
+	systemctl enable docker-jenkins
+
+------------------------------------------------------------------------
+
+--------------- ** 도커 설정파일 커밋시 마운트된 볼륨 포함 안됨 -------
+The commit operation will not include any data contained in volumes mounted inside the container.
+
+확약 조작에는 컨테이너 내에 마운트 된 볼륨에 포함 된 데이터는 포함되지 않습니다.
+------------------------------------------------------------------------
+
+--------------- 명령어 모음 -----------------
+#실행중인 컨테이너 bash 로 진입 : docker exec -it 컨테이너이름 /bin/bash
+#도커파일 이미지 빌드 : sudo docker build -t 이미지이름:버전 -f 도커파일이름 .
+#설정 정보 검색 : docker inspect --format="{{.Mounts}}{{.NetworkSettings.Networks}}" nginx
+#도커 사용자에게 권한 주기 : sudo usermod -aG docker your-user
+#도커 쉘 열기 : docker exec -it nginx /bin/bash
+------------------------------------------------------------------------
+
+---------------도커 이미지 alpine/git 사용법-----------------
+1. 참조 url : https://hub.docker.com/r/alpine/git?ref=login
+
+2. 사용법
+$ cd application
+$ alias git="docker run -ti --rm -v $(pwd):/git -v $HOME/.ssh:/root/.ssh alpine/git"
+$ git clone git@github.com:YOUR_ACCOUNT/YOUR_REPO.git
+$ cd YOUR_REPO
+$ alias git="docker run -ti --rm -v $(pwd):/git -v $HOME/.ssh:/root/.ssh alpine/git"
+# edit several files
+$ git add .
+$ git status
+$ git commit -m "test"
+$ git push -u origin master
+
+#lyae_web bitbucket 주소
+alias git="docker run -ti --rm -v $(pwd):/git -v $HOME/.ssh:/root/.ssh alpine/git"
+git clone https://lyaesley@bitbucket.org/lyaesley/docker_lyae_web.git
+cd docker_lyae_web
+alias git="docker run -ti --rm -v $(pwd):/git -v $HOME/.ssh:/root/.ssh alpine/git"
+
+git config user.name lyae
+git config user.email lyaesley@naver.com
+
+------------------------------------------------------------------------
+
+--------------------- 젠킨스 도커 이미지 생성 --------------------------------
+#젠킨스 기본 세팅
+docker run -d -p 8080:8080 -p 50000:50000 -v ${HOME}/dev/jenkins_home:/var/jenkins_home --name jenkins -u root jenkins/jenkins:lts
+
+#계정생성 & 플러그인 설치 세팅 
+docker run -d -p 8080:8080 -p 50000:50000 -v ${HOME}/dev/docker_lyae_web/jenkins_home:/var/jenkins_home --name jenkins -u root lyae/jenkins:1.0
+
+docker run -d -p 8080:8080 -p 50000:50000 --name jenkins -u root lyae/jenkins:1.0
+
+#도커파일 이미지 빌드
+sudo docker build -t lyae/jenkins:1.0 -f DockerfileJenkins .
+------------------------------------------------------------------------
+
+-------------------- 도커 이미지 생성 docker container commit --------------
+docker commit -a "lyae<lyaesley@naver.com>" -m "" jenkins lyae/jenkins:1.0
+------------------------------------------------------------------------
+
+-------------------- 도커 nginx ------------------------------------------
+1. 도커파일 빌드 : sudo docker build -t lyae/nginx:1.0 -f DockerfileUbuntuNginx .
+2. 이미지 컨테이너 생성(포트&볼륨&네트워크) : docker run -p 8888:80 --name nginx -d -v ${HOME}/dev/docker_lyae_web/nginx/nginx.conf:/etc/nginx/nginx.conf --network lyae-web lyae/nginx:1.0
+
+
+docker run -p 8888:80 -d --name nginx  -v ${HOME}/nginx:/etc/nginx nginx
+
+sudo docker build -t lyae/nginx:1.0 -f DockerfileNginx .
+
+docker run -p 8888:80 --name web --link jenkins:jenkins -d lyae/nginxubuntu:1.0
+
+docker run -p 8888:80 --name nginx -d -v ${HOME}/dev/docker_lyae_web/nginx/nginx.conf:/etc/nginx/nginx.conf lyae/nginx:1.0
+
+
+

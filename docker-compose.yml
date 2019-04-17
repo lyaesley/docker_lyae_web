@@ -33,8 +33,9 @@ services:
     expose:
       - "8080"
     volumes:
-      - /home/lyae/dev/docker_lyae_web/jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
+      - /home/lyae/dev/docker_lyae_web/jenkins_home:/var/jenkins_home
+      - /home/lyae/dev/war:/home/lyae/dev/war
     networks:
       - web
     
