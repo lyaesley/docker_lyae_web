@@ -1,0 +1,26 @@
+# 베이스 이미지
+FROM openjdk:8-jdk-alpine
+
+#환경 변수 설정
+#설정 파일 경로 설정
+#ENV DEVPATH /home/lyae/dev
+#워크디렉토리 설정 #이미지에서 적용할 워크 디렉토리임!
+#WORKDIR $DEVPATH
+
+LABEL maintainer "lyae <lyaesley@naver.com>"
+LABEL title="lyae/was"
+LABEL version="1.0"
+LABEL description="was"
+
+#이미지에 환경 설정 추가 #메인OS 경로는 Dockerfile 하위를 지정해야함 
+#ADD jenkins_home /var/jenkins_home
+
+#VOLUME /tmp
+
+#ARG JAR_FILE
+#COPY ${JAR_FILE} app.jar
+
+#ENTRYPOINT ["java","-jar","/app.jar"]
+
+# 포트 지정
+EXPOSE 9090

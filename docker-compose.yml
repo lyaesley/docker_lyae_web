@@ -35,7 +35,26 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /home/lyae/dev/docker_lyae_web/jenkins_home:/var/jenkins_home
+      #- /home/lyae/dev/war:/home/lyae/dev/war
+    networks:
+      - web
+      
+  jenkins:
+    container_name: lyae-was
+    build:
+      context: .
+      dockerfile: Dockerfile-was
+    #user: root
+    image:
+        lyae/was:1.0
+    ports:
+      - "9090:9090"
+    expose:
+      - "9090"
+    volumes:
       - /home/lyae/dev/war:/home/lyae/dev/war
+    entrypoint:
+      - java -jar /home/lyae/dev/war/*.jar
     networks:
       - web
     
@@ -53,4 +72,5 @@ services:
         
 networks:
   web:
+    driver: bridge
     
