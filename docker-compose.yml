@@ -51,8 +51,6 @@ services:
       - "9090:9090"
     expose:
       - "9090"
-    command:
-      - java -jar
     volumes:
       - /home/lyae/dev/war:/home/lyae/dev/war
     networks:
