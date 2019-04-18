@@ -13,7 +13,7 @@ LABEL version="1.0"
 LABEL description="was"
 
 #VOLUME /tmp
-ADD app.jar app.jar
+ADD /app/app.jar app.jar
 RUN apk add --no-cache bash
 RUN bash -c 'touch /app.jar'
 ENTRYPOINT ["java","-jar","-Dspring.profiles.active=prod","/app.jar"]
