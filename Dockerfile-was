@@ -12,9 +12,9 @@ LABEL title="lyae/was"
 LABEL version="1.0"
 LABEL description="was"
 
-VOLUME /tmp
+#VOLUME /tmp
 ADD app.jar app.jar
-RUN bash -c 'touch /app.jar'
+#RUN bash -c 'touch /app.jar'
 #ENTRYPOINT ["java","-jar","-Dspring.profiles.active=prod","/app.jar"]
 
 # 포트 지정
