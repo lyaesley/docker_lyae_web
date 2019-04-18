@@ -51,11 +51,10 @@ services:
       - "9090:9090"
     expose:
       - "9090"
+    entrypoint:
+      - java -jar -Dspring.profiles.active=prod /app.jar
     volumes:
       - /home/lyae/dev/war:/home/lyae/dev/war
-    entrypoint:
-      #- java -jar /home/lyae/dev/war/lyae-0.0.1.jar
-      - java
     networks:
       - web
     
