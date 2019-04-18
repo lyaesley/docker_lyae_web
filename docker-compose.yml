@@ -7,7 +7,7 @@ services:
       context: . 
       dockerfile: Dockerfile-ubuntu-nginx
     image:
-      lyae/nginx:2.0
+      lyae/nginx:1.0
     ports:
       - "8888:80"
     expose:
@@ -29,9 +29,9 @@ services:
     image:
         lyae/jenkins-blueocean:1.0
     ports:
-      - "8080:8080"
+      - "8090:8090"
     expose:
-      - "8080"
+      - "8090"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /home/lyae/dev/docker_lyae_web/jenkins_home:/var/jenkins_home
@@ -54,7 +54,8 @@ services:
     volumes:
       - /home/lyae/dev/war:/home/lyae/dev/war
     entrypoint:
-      - java -jar /home/lyae/dev/war/lyae-0.0.1.jar
+      #- java -jar /home/lyae/dev/war/lyae-0.0.1.jar
+      - java
     networks:
       - web
     

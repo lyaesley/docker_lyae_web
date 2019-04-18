@@ -17,4 +17,4 @@ LABEL version="1.0"
 #ADD jenkins_home /var/jenkins_home
 
 # 포트 지정
-EXPOSE 8080
+EXPOSE 8090
