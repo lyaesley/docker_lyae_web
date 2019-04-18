@@ -39,7 +39,7 @@ services:
     networks:
       - web
       
-  jenkins:
+  was:
     container_name: lyae-was
     build:
       context: .
@@ -54,7 +54,7 @@ services:
     volumes:
       - /home/lyae/dev/war:/home/lyae/dev/war
     entrypoint:
-      - java -jar /home/lyae/dev/war/*.jar
+      - java -jar /home/lyae/dev/war/lyae-0.0.1.jar
     networks:
       - web
     
