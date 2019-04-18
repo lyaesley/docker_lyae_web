@@ -35,8 +35,8 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /home/lyae/dev/docker_lyae_web/jenkins_home:/var/jenkins_home
-      - /home/lyae/dev/docker_lyae_web/app:/home/lyae/dev/docker_lyae_web/app
-      #- /home/lyae/dev/war:/home/lyae/dev/war
+      #- /home/lyae/dev/docker_lyae_web/app:/home/lyae/dev/docker_lyae_web/app
+      - /home/lyae/dev/war:/home/lyae/dev/war
     networks:
       - web
       
