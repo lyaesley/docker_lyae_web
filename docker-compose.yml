@@ -29,9 +29,9 @@ services:
     image:
         lyae/jenkins-blueocean:1.0
     ports:
-      - "8090:8090"
+      - "8080:8080"
     expose:
-      - "8090"
+      - "8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /home/lyae/dev/docker_lyae_web/jenkins_home:/var/jenkins_home
