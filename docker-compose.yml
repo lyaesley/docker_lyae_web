@@ -54,6 +54,8 @@ services:
       - "9090"
     volumes:
       - /home/lyae/dev/docker_lyae_web/app:/home/lyae/dev/docker_lyae_web/app
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
     networks:
       - web
     
