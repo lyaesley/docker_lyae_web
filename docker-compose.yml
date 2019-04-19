@@ -53,7 +53,7 @@ services:
     expose:
       - "9090"
     volumes:
-      - /home/lyae/dev/war:/home/lyae/dev/war
+      - /home/lyae/dev/docker_lyae_web/app:/home/lyae/dev/docker_lyae_web/app
     networks:
       - web
     
