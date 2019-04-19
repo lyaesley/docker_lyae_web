@@ -59,8 +59,6 @@ services:
       - /images:/images
       - "/etc/timezone:/etc/timezone:ro"
       - "/etc/localtime:/etc/localtime:ro"
-    entrypoint:
-      - java -jar /app.war
     networks:
       - web
     
