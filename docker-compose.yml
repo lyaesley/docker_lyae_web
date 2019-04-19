@@ -39,8 +39,6 @@ services:
       - /home/lyae/dev/docker_lyae_web/jenkins_home:/var/jenkins_home
       - /home/lyae/dev/docker_lyae_web/app:/home/lyae/dev/docker_lyae_web/app
       #- /home/lyae/dev/war:/home/lyae/dev/war
-    entrypoint:
-      - java -jar /app.war
     networks:
       - web
       
@@ -61,6 +59,8 @@ services:
       - /images:/images
       - "/etc/timezone:/etc/timezone:ro"
       - "/etc/localtime:/etc/localtime:ro"
+    entrypoint:
+      - java -jar /app.war
     networks:
       - web
     
