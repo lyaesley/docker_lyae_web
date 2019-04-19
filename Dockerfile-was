@@ -16,7 +16,7 @@ LABEL description="was"
 ADD /app/app.war app.war
 RUN apk add --no-cache bash
 RUN bash -c 'touch /app.war'
-ENTRYPOINT ["java","-jar","-Dspring.profiles.active=prod","/app.war"]
+#ENTRYPOINT ["java","-jar","-Dspring.profiles.active=prod","/app.war"]
 
 # 포트 지정
 EXPOSE 9090
