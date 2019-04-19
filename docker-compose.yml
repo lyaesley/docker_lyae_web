@@ -18,6 +18,7 @@ services:
       - was
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - /images:/images
     networks:
       - web
      
