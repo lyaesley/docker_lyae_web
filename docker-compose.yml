@@ -38,6 +38,7 @@ services:
       - "8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
       - /home/lyae/dev/docker_lyae_web/jenkins_home:/var/jenkins_home
       - /home/lyae/dev/docker_lyae_web/app:/home/lyae/dev/docker_lyae_web/app
       - /home/lyae/dev/docker_lyae_web:/home/lyae/dev/docker_lyae_web
