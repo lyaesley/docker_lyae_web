@@ -13,6 +13,10 @@ LABEL maintainer "lyae <lyaesley@naver.com>"
 LABEL title="lyae/jenkins-blueocean"
 LABEL version="1.0"
 
+#docker-compose 컨네이터로 설치
+RUN curl -L --fail https://github.com/docker/compose/releases/download/1.24.0/run.sh -o /usr/local/bin/docker-compose
+RUN chmod +x /usr/local/bin/docker-compose
+
 #이미지에 환경 설정 추가 #메인OS 경로는 Dockerfile 하위를 지정해야함 
 #ADD jenkins_home /var/jenkins_home
 
