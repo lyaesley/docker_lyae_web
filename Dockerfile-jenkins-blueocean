@@ -17,6 +17,10 @@ LABEL version="1.0"
 #RUN curl -L --fail https://github.com/docker/compose/releases/download/1.24.0/run.sh -o /usr/local/bin/docker-compose
 #RUN chmod +x /usr/local/bin/docker-compose
 
+RUN apk add py-pip
+RUN apk add python-dev libffi-dev openssl-dev gcc libc-dev make
+RUN pip install docker-compose
+
 #이미지에 환경 설정 추가 #메인OS 경로는 Dockerfile 하위를 지정해야함 
 #ADD jenkins_home /var/jenkins_home
 
