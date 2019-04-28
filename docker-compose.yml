@@ -46,7 +46,21 @@ services:
       #- /home/lyae/dev/war:/home/lyae/dev/war
     networks:
       - web
-      
+
+  portainer:
+    container_name: lyae-portainer
+    image: portainer/portainer:latest
+    ports:
+      - "9000:9000"
+    expose:
+      - "9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+    networks:
+      - web
+
   was:
     container_name: lyae-was
     build:
@@ -67,19 +81,7 @@ services:
     networks:
       - web
     
-  portainer:
-    container_name: lyae-portainer
-    image : portainer/portainer:latest
-    ports:
-      - "9000:9000"
-    expose:
-      - "9000"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - "/etc/timezone:/etc/timezone:ro"
-      - "/etc/localtime:/etc/localtime:ro"
-    networks:
-      - web
+
         
 networks:
   web:

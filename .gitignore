@@ -1,3 +1,5 @@
 jenkins_home/
 *.jar
 app/
+.idea/
+*.iml
