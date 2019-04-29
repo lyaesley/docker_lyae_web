@@ -9,7 +9,7 @@ services:
     image:
       lyae/nginx:1.0
     ports:
-      - "80:80"
+      - "8888:80"
     expose:
       - "80"
     depends_on:
